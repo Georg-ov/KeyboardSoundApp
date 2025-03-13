@@ -33,20 +33,32 @@ namespace KeyboardSoundApp
             {
                 try
                 {
+                    // Obtiene la ruta base del ejecutable
+                    string basePath = AppDomain.CurrentDomain.BaseDirectory;
+
+                    // Construye la ruta relativa al archivo de sonido
                     string soundFile;
 
                     if (key == Keys.Enter)
                     {
-                        soundFile = "C:\\Users\\Yoki\\source\\repos\\KeyboardSoundApp\\KeyboardSoundApp\\resources\\sounds\\enter_1.wav";
+                        soundFile = System.IO.Path.Combine(basePath, "resources", "sounds", "enter_1.wav");
                     }
                     else
                     {
-                        soundFile = "C:\\Users\\Yoki\\source\\repos\\KeyboardSoundApp\\KeyboardSoundApp\\resources\\sounds\\tecla_1.wav";
+                        soundFile = System.IO.Path.Combine(basePath, "resources", "sounds", "tecla_1.wav");
                     }
 
-                    using (SoundPlayer player = new SoundPlayer(soundFile))
+                    // Verifica si el archivo existe antes de intentar reproducirlo
+                    if (System.IO.File.Exists(soundFile))
                     {
-                        player.Play(); // Reproduce el sonido
+                        using (SoundPlayer player = new SoundPlayer(soundFile))
+                        {
+                            player.Play(); // Reproduce el sonido
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("El archivo de sonido no se encontró: " + soundFile);
                     }
                 }
                 catch (Exception ex)
