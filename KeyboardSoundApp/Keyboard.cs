@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Media;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -20,7 +21,8 @@ namespace KeyboardSoundApp
         private void toggleButton_Click(object sender, EventArgs e)
         {
             isActive = !isActive;
-            toggleButton.Text = isActive ? "Desactivar" : "Activar";
+            toggleButton.Text = isActive ? "Deactivate" : "Activate";
+            toggleButton.BackColor = isActive ? Color.Red : Color.FromArgb(50, 150, 250);
             if (isActive) keyboardHook.HookKeyboard();
             else keyboardHook.UnhookKeyboard();
         }

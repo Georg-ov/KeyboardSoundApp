@@ -10,7 +10,7 @@ namespace KeyboardSoundApp
         private void InitializeComponent()
         {
             this.toggleButton = new Button();
-            this.toggleButton.Text = "Activar";
+            this.toggleButton.Text = "Activate";
             this.toggleButton.Location = new System.Drawing.Point(50, 50);
             this.toggleButton.Click += toggleButton_Click;
             this.Controls.Add(this.toggleButton);
